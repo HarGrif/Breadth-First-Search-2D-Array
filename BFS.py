@@ -65,31 +65,41 @@ def bfs(bfs_map, bfs_goal, bfs_start):
             bfs_path = None
             print("Unsolvable")
 
-    index = np.array([goal[0], goal[1]])
+    next_index = np.array([bfs_goal[0], bfs_goal[1]])
     while pathfinding:
         dx = [-1, -1, -1, 0, 0, 1, 1, 1]
         dy = [-1, 0, 1, -1, 1, -1, 0, 1]
-        # Iterate through neighbors
+
+        smallest = float('inf')  # Initialize smallest with positive infinity
+        index = next_index
+        print(index)
         for i in range(8):
-            smallest = 10**100  # A number so large it can be assumed infinite
             new_x = index[1] + dx[i]
             new_y = index[0] + dy[i]
-            # Ensure coordinates are within bounds of matrix
-            if 0 <= new_x < m_rows and 0 <= new_y < m_cols:
-                value = search[new_x][new_y]
-                # Update minimum if found a smaller value
-                if value < smallest:
-                    index = np.array([deepcopy(new_x), deepcopy(new_y)])
-                    bfs_path.append(index)
+            # Ensure coordinates are within bounds of the matrix
+            if 0 <= new_x < m_cols and 0 <= new_y < m_rows:
+                value = search[new_y, new_x]
+                # Update minimum if found a smaller value that is not zero
+                if value != 0 and value < smallest:
+                    smallest = value
+                    next_index = np.array([new_y, new_x])
+                    if smallest == 1:
+                        np.append(bfs_path, start)
+                        pathfinding = False
+                        continue
+        np.append(bfs_path, index)
 
+    print(bfs_path)
 
+    plt.figure()
     plt.imshow(search, cmap='binary', interpolation='nearest')
+    plt.plot(bfs_path[:, 1], bfs_path[:, 0], marker='o', color='red')
     plt.show()
 
     return bfs_path
 
 
-plt.imshow(map, cmap='binary', interpolation='nearest')
-plt.show()
+# plt.imshow(map, cmap='binary', interpolation='nearest')
+# plt.show()
 
 bfs(map, goal, start)
