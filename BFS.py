@@ -74,3 +74,5 @@ plt.imshow(map, cmap='binary', interpolation='nearest')
 plt.show()
 
 bfs(map, goal, start)
+
+#just for the commit
