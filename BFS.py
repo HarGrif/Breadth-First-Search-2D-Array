@@ -13,6 +13,7 @@ goal = np.array([24, 29])
 
 def bfs(bfs_map, bfs_goal, bfs_start):
     solving = True
+    pathfinding = True
     m_rows = len(bfs_map)
     m_cols = len(bfs_map[0])
     search = np.zeros([m_rows, m_cols])
@@ -26,15 +27,36 @@ def bfs(bfs_map, bfs_goal, bfs_start):
         # Iterates through all the found squares
         for i in range(len(indices[0])):
             index = np.array([indices[0][i], indices[1][i]])
-            # Finds index of squares around step square
-            for j in range(max(0, index[0] - 1), min(m_rows, index[0] + 2)):
-                for k in range(max(0, index[1] - 1), min(m_cols, index[1] + 2)):
-                    # Check if the indices are within the bounds of the matrix
-                    if 0 <= j < m_rows and 0 <= k < m_cols:
-                        # Check if squares have been stepped on before or if the map has an obstacle there
-                        if search[j, k] == 0 and bfs_map[j, k] == 0:
-                            # Take step
-                            search[j, k] = step + 1
+
+            # For cell to the left
+            # Check if the indices are within the bounds of the matrix
+            if 0 <= index[0] - 1 < m_rows and 0 <= index[1] < m_cols:
+                # Check if squares have been stepped on before or if the map has an obstacle there
+                if search[index[0] - 1, index[1]] == 0 and bfs_map[index[0] - 1, index[1]] == 0:
+                    # Take step
+                    search[index[0] - 1, index[1]] = step + 1
+
+            # For cell to the right
+            if 0 <= index[0] + 1 < m_rows and 0 <= index[1] < m_cols:
+                # Check if squares have been stepped on before or if the map has an obstacle there
+                if search[index[0] + 1, index[1]] == 0 and bfs_map[index[0] + 1, index[1]] == 0:
+                    # Take step
+                    search[index[0] + 1, index[1]] = step + 1
+
+            # For cell above
+            if 0 <= index[0] < m_rows and 0 <= index[1] - 1 < m_cols:
+                # Check if squares have been stepped on before or if the map has an obstacle there
+                if search[index[0], index[1] - 1] == 0 and bfs_map[index[0], index[1] - 1] == 0:
+                    # Take step
+                    search[index[0], index[1] - 1] = step + 1
+
+            # For cell below
+            if 0 <= index[0] < m_rows and 0 <= index[1] + 1 < m_cols:
+                # Check if squares have been stepped on before or if the map has an obstacle there
+                if search[index[0], index[1] + 1] == 0 and bfs_map[index[0], index[1] + 1] == 0:
+                    # Take step
+                    search[index[0], index[1] + 1] = step + 1
+
         if search[bfs_goal[0], bfs_goal[1]] == 0:
             continue
         solving = False
@@ -42,8 +64,8 @@ def bfs(bfs_map, bfs_goal, bfs_start):
             bfs_path = None
             print("Unsolvable")
 
-        plt.imshow(search, cmap='binary', interpolation='nearest')
-        plt.show()
+    plt.imshow(search, cmap='binary', interpolation='nearest')
+    plt.show()
 
     return bfs_path
 
