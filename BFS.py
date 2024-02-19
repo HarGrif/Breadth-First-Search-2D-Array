@@ -14,6 +14,7 @@ goal = np.array([24, 29])
 def bfs(bfs_map, bfs_goal, bfs_start):
     solving = True
     pathfinding = True
+    bfs_path = np.array([])
     m_rows = len(bfs_map)
     m_cols = len(bfs_map[0])
     search = np.zeros([m_rows, m_cols])
@@ -63,6 +64,24 @@ def bfs(bfs_map, bfs_goal, bfs_start):
         if np.array_equal(search, prev_step):
             bfs_path = None
             print("Unsolvable")
+
+    index = np.array([goal[0], goal[1]])
+    while pathfinding:
+        dx = [-1, -1, -1, 0, 0, 1, 1, 1]
+        dy = [-1, 0, 1, -1, 1, -1, 0, 1]
+        # Iterate through neighbors
+        for i in range(8):
+            smallest = 10**100  # A number so large it can be assumed infinite
+            new_x = index[1] + dx[i]
+            new_y = index[0] + dy[i]
+            # Ensure coordinates are within bounds of matrix
+            if 0 <= new_x < m_rows and 0 <= new_y < m_cols:
+                value = search[new_x][new_y]
+                # Update minimum if found a smaller value
+                if value < smallest:
+                    index = np.array([deepcopy(new_x), deepcopy(new_y)])
+                    bfs_path.append(index)
+
 
     plt.imshow(search, cmap='binary', interpolation='nearest')
     plt.show()
