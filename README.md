@@ -27,7 +27,13 @@ Here is an example output of what a map and path plot would look like from [the 
 
 ## Contribution, Modification and Distribution
 
-Feel free to use and modify this code for your pathfinding needs. If you encounter any issues or have suggestions for improvement, please open an issue or contribute to the repository. Happy pathfinding!
+Feel free to use and modify this code for your pathfinding needs. 
+
+If you encounter any issues or have suggestions for improvement, please open an issue or contribute to the repository.
+
+If you choose to contribute to the repository please do so under the 'Modifications' branch. The 'main' branch should never be touched.
+
+Happy pathfinding!
 
 MIT License
 Copyright (c) 2024 HarGrif
