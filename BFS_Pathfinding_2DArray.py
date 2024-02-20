@@ -2,6 +2,16 @@ import numpy as np
 from copy import deepcopy
 
 
+'''
+This function performs a Breadth-First Search of a 2D array to find the shortest path between the start and the goal.
+
+It takes inputs in the form of start coordinates, goal coordinates and a 2D map in the form of an array wit 0 as empty
+space and 1 for obstacles.
+
+It returns a boolean term to show if the map is solvable, and if the map is solvable returns the shortest path.
+'''
+
+
 def bfs(bfs_map, bfs_goal, bfs_start):
     solvable = True
     solving = True

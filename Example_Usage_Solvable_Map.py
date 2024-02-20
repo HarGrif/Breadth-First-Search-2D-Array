@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from BFS import bfs
+from BFS_Pathfinding_2DArray import bfs
 
 # Initialise map parameters for a solvable map
 map = np.zeros([25, 30])
