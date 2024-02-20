@@ -1,5 +1,7 @@
+import matplotlib.pyplot as plt
 import numpy as np
 from copy import deepcopy
+import matplotlib.pyplot as plt
 
 
 '''
@@ -101,5 +103,9 @@ def bfs(bfs_map, bfs_goal, bfs_start):
             fin_path[1, i] = bfs_path[i][1]
     else:
         fin_path = None
+
+    plt.figure()
+    plt.imshow(search, cmap='viridis', interpolation='nearest')
+    plt.colorbar()
 
     return fin_path, solvable
