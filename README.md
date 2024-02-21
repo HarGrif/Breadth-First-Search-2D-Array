@@ -31,7 +31,7 @@ Feel free to use and modify this code for your pathfinding needs.
 
 If you encounter any issues or have suggestions for improvement, please open an issue or contribute to the repository.
 
-If you choose to contribute to the repository please do so under the 'Modifications' branch. The 'main' branch should never be touched.
+If you choose to contribute to the repository please do so under the 'modifications' branch. The 'main' branch should never be touched (it is for my uni project).
 
 Happy pathfinding!
 
